@@ -1,0 +1,1 @@
+ALTER TABLE caffe_orders.item ADD COLUMN discount bigint NOT NULL DEFAULT 100;

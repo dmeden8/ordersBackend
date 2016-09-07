@@ -1,0 +1,49 @@
+spring:
+  # Preskace printanje bannera u konzolu ili log fileove prilikom pokretanja aplikacije
+  datasource:
+    # Konekcija prema bazi (kreirati bazu springdb i usera spring kao ownera baze na svom lokalnom PostgreSQL)
+    platform: postgresql
+    url: jdbc:postgresql://127.0.0.1:5432/caffeorderdb
+    username: caffe
+    password: caffe
+    # Incializacija baze
+    initialize: false # Change to false once created
+    schema: classpath:/sqls/schema-postgresql.sql
+    data: classpath:/sqls/data-postgresql.sql
+  jpa:
+    # Hibernate postavke
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  jackson:
+    serialization:
+      fail-on-empty-beans: false    
+  redis:
+    host: localhost
+    port: 6379    
+    
+
+      
+# Auth token encryption secret key for HmacSHA256 (fast hashing algorithm)
+crypto:
+  hmac-key: 5Up3R4w350M2k3Y5    
+  
+schedule:
+     minutes: 17
+     seconds: 10
+     
+server:
+  port: 8088
+  ssl:
+    enabled: false
+    key-store: classpath:orders.jks
+    key-store-password: caffeorders
+    key-password: caffeorders
+security:
+  require-ssl: true   
+  
+#keytool -genkey -keyalg RSA -alias selfsigned -keystore orders.jks -storepass caffeorders  
+  
+  
+          
